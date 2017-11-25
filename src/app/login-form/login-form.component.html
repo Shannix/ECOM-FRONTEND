@@ -1,0 +1,45 @@
+
+
+<br>
+<br>
+<br>
+<div *ngIf="LoggedIn=='false'">
+  <div class="row">
+
+
+    <div class="col col-lg-4"></div>
+
+    <div class="col col-lg-4">
+
+
+
+      <form (submit)="loginUser($event)"   Style="text-align: center;">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Mon e-mail :</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mon e-mail :">
+
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Mot de passe </label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+        </div>
+
+        <div class="form-group">
+          <a   href="subscribe" class="pull-right"  Style="margin-right: 1%;">  <small   class="form-text text-muted">Ou s'inscrire en 5 secondes...   <i class="fa fa-user-plus fa-2x" Style="color : #36454f;" aria-hidden="true"></i>
+          </small> </a>
+        </div>
+
+
+
+        <button  type="submit" class="btn btn-primary">Se connecter</button>
+      </form>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+

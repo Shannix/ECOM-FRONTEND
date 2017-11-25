@@ -1,0 +1,255 @@
+<nav aria-label="breadcrumb" role="navigation" style="margin-top: 1%;" xmlns="http://www.w3.org/1999/html">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="newproduct">Mes produits</a></li>
+  </ol>
+</nav>
+
+<br>
+
+
+
+<table class="table">
+  <caption>Mes produits</caption>
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col" >Produit</th>
+    <th scope="col" style="text-align: center;">Prix min</th>
+    <th scope="col" style="text-align: center;">Prix max</th>
+
+    <th scope="col" style="text-align: center;"> Nombre de propositions </th>
+    <th scope="col">  </th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <tr   >
+    <th  scope="row"> <span class="badge badge-dark"> 1 </span></th>
+
+    <td><a (click)="PickInfoProduct(1)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" >   <i class="fa fa-info-circle" aria-hidden="true"></i> Macbook pro 2012  </a></td>
+    <td style="text-align: center;"> 10 </td>
+    <td style="text-align: center;"> 25 </td>
+    <td style="text-align: center;"> <span class="badge badge-pill badge-danger">4</span> </td>
+    <td>
+
+      <a   (click)="DeleteProduct(i)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+
+      <a   (click)="GoDons(i)" href="#" class="pull-right" style="margin-right: 4%;"> <i class="fa fa-handshake-o fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+
+      <a   (click)="UpdateProduct(i)"   data-toggle="modal" data-target="#Modal3"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-pencil-square fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+
+      <a   (click)="ViewProductDetail(1)"   class="pull-right" style="margin-right: 4%;" > <i class="fa fa-tasks fa-2x" Style="color: #17333e;" aria-hidden="true"></i> </a>
+
+    </td>
+  </tr>
+
+
+  </tbody>
+</table>
+
+
+
+<!-- Consulter un produit  -->
+
+<div   class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel"  >  </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="card-text" Style="height: 200px;">         </p>
+            <p class="card-text"> Compris entre <span class="badge badge-dark">    € </span> & <span class="badge badge-danger">  €  </span>    </p>
+          </div>
+
+          <div class="col-sm-6">
+            <img class="card-img-top" width="50" height="300" src="./assets/image/" alt="image">
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Ajouter -->
+
+
+
+<div   class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel"  >  <i class="fa fa-plus-square" aria-hidden="true"></i> Nouveau produit </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="row">
+
+
+          <div class="col-sm-12">
+
+
+
+            <form (submit)="RegisterProduct($event)"   Style="text-align: center;">
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Intitulé">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Description">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <input type="number" class="form-control" placeholder="Prix min" value="0">
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control" placeholder="Prix max">
+                </div>
+              </div>
+              <br>
+              <div class="form-group">
+                <div class="col">
+                  <input type="number" class="form-control" placeholder="Code postal" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Date limite">
+                  <p> Date d'expiration de la publication. </p>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="file" name="image" >
+                  <p> Charger une image claire & net du produit à vendre. </p>
+                </div>
+              </div>
+
+
+
+
+
+              <button  type="submit" class="btn btn-primary pull-right"> Ajouter  </button>
+
+            </form>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modification -->
+
+
+
+<div   class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel"  >  <i class="fa fa-plus-square" aria-hidden="true"></i> Modifier un produit </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="row">
+
+
+          <div class="col-sm-12">
+            <form (submit)="UpdateProduct($event)"   Style="text-align: center;">
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Intitulé">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Description">
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Date limite">
+                  <p> Editer la date d'expiration de la publication. </p>
+                </div>
+              </div>
+
+
+
+              <button  type="submit" class="btn btn-primary pull-right"> Mise à jour  </button>
+
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

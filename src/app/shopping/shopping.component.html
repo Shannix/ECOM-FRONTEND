@@ -1,0 +1,164 @@
+
+<nav aria-label="breadcrumb" role="navigation" style="margin-top: 1%;" xmlns="http://www.w3.org/1999/html">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="search">Panier</a></li>
+  </ol>
+</nav>
+
+<br>
+
+
+<div class="row">
+
+  <div class="col-lg-8">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Mon panier: </h4>
+
+
+
+
+
+        <table class="table">
+          <caption>Pre-commande</caption>
+          <thead>
+          <tr>
+            <th scope="col" >#</th>
+            <th scope="col" >Articles</th>
+            <th scope="col" class="text-center"  >Proposition</th>
+            <th scope="col" > </th>
+          </tr>
+          </thead>
+          <tbody>
+
+
+          <tr *ngFor="let product of Panier;let i = index"  >
+            <th  scope="row"> <span class="badge badge-dark">{{ i+1 }} </span></th>
+
+            <td   width=30%; ><a (click)="PickInfo(product.idpr)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" > <i class="fa fa-info-circle" aria-hidden="true"> </i>  {{ product.name }} </a></td>
+            <td width="40%">
+
+              <div class="col-lg-12" >
+                <div class="input-group" >
+
+                  <span class="input-group-addon"> {{product.prixmin }}</span>
+                  <input type="number" min="{{product.prixmin }}" value="{{product.prixmin }}" style="text-align:center;" class="form-control" aria-label="Text input with radio button">
+                  <span class="input-group-addon">{{product.prixmax }}</span>
+                  <span class="input-group-addon">€</span>
+                </div>
+              </div>
+
+            </td>
+            <td width=13%; >
+              <a   (click)="DeleteShop(i)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+
+              <div *ngIf="LoggedIn=='true'">
+                <a   (click)="AddShop(i)" href="#" class="pull-right" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+              </div>
+
+            </td>
+          </tr>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-4">
+
+    <div class="card">
+      <div class="card-body">
+
+        <h6 class="card-title">Panier :  <span class="pull-right">00,00 €</span>   </h6>
+        <h6 class="card-title">Frais de service : <span  class="pull-right">  00,00 € </span> </h6>
+        <hr>
+        <h5 class="card-title">Totale des soumissions : <span  class="pull-right">00,00 €</span> </h5>
+
+      </div>
+    </div>
+
+    <br>
+    <div *ngIf="LoggedIn=='false'">
+      <div class="card">
+        <div class="card-body">
+
+          <h5 class="card-title"> Déjà un compte ?    </h5>
+          <hr>
+
+          <form   Style="text-align: center;">
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mon e-mail ">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+            </div>
+
+
+            <button  type="submit" class="btn btn-primary pull-right">Se connecter</button>
+          </form>
+
+
+
+          <a routerLink="subscribe"  href="#" class="pull-left"  Style="margin-right: 1%;text-decoration: underline; font-size: 19px;" >  <small   class="form-text text-muted"> Pas de compte ? S'inscrire en 5 secondes...
+          </small> </a>
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+
+        <div class="modal-header">
+          <h5  class="modal-title" id="exampleModalLabel"  > {{ PrName }} </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="card-text" Style="height: 200px;">  {{ Prdescription }}         </p>
+              <p class="card-text"> Compris entre <span class="badge badge-dark">  {{ PrPrixmin }} € </span> & <span class="badge badge-danger">{{ PrPrixmax }} €  </span>    </p>
+
+
+            </div>
+
+            <div class="col-sm-6">
+              <img class="card-img-top" width="50" height="300" src="./assets/image/{{PrPicture}}" alt="image">
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+

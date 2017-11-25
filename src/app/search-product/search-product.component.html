@@ -1,0 +1,197 @@
+
+
+
+<br>
+
+<div class="row">
+  <div class="col-lg-3"> </div>
+  <div class="col-lg-8">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <input type="text" class="form-control" [(ngModel)]="CPAMSEARCH" placeholder="Que recherchez-vous?" aria-label="">
+      <span class="input-group-btn">
+        <button  (click)="GoSearch()"  class="btn btn-secondary animated tada" type="button"> <i class="fa fa-refresh" aria-hidden="true"></i>  </button>
+              </span>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-sm-3">
+
+    <div   style="height: 510px; margin: 3%; background-color: #dddddd;  border-radius: 6px;">
+      <br>
+
+      <div class="info-tile tile-black" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
+
+
+        <div class="tile-icon " style="margin: 3%;"> <H5>  <i class="fa fa-hashtag "></i> Catégorie </H5> </div>
+
+
+        <div class="row" >
+          <div class="col-lg-11" style="margin: 4%;">
+            <select style="width : 100%">
+              <option> Informatique </option>
+              <option> Telephone </option>
+              <option> Autre </option>
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="tile-icon " style="margin: 3%;"> <H5>  <i class="fa fa-eur "></i> Prix </H5> </div>
+
+
+        <div class="row" style="margin: 1%;">
+          <div class="col">
+            <input type="number" [(ngModel)]="CPAMMIN"  class="form-control" value="0">
+          </div>
+          <span class="input-group-addon" style="background-color: #323232; color:white;border-radius: 10px;">€</span>
+          <div class="col">
+            <input type="number" [(ngModel)]="CPAMMAX"  class="form-control" placeholder="Max">
+          </div>
+        </div>
+
+        <hr Style="background-color:white;">
+
+        <div class="tile-icon " style="margin: 3%;"><H5> <i class="fa fa-globe "></i> Code postale </H5> </div>
+
+        <div class="row">
+          <div class="col-sm-11" style="margin: 4%;">
+            <input type="number" [(ngModel)]="CPAMCP"  value="38000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" maxlength="5" placeholder="Code postal" >
+
+          </div>
+
+        </div>
+
+        <hr Style="background-color:white;">
+
+        <div class="tile-icon " style="margin: 3%;"><H5> <i class="fa fa-envelope" aria-hidden="true"></i> Élargir ma recherche </H5> </div>
+
+        <p style="margin: 3%;"> Ne passez à côté d'aucune annonce ! </p>
+        <br>
+
+        <div style="text-align: center;"><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#Modal2"  >Créer une alerte</button></div>
+
+        <div class="tile-body"><span></span></div>
+        <div class="tile-footer"><span class="text-success"> <!--i class="fa fa-level-up"></i--></span></div>
+      </div>
+
+      <br>
+    </div>
+
+
+
+
+  </div>
+
+  <ng-container *ngFor="let prod of Products  " >
+    <ng-container *ngIf=" CPAMMIN <= prod.prixmin && CPAMMAX >= prod.prixmax && prod.codepostale==CPAMCP  "  >
+      <div *ngIf="(prod.name).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4">
+
+        <img  class="card-img-top" width="50" height="300" src="./assets/image/{{prod.picture}}" alt="image">
+        <div  class="card-body bg-light">
+          <h4 class="card-title">{{ prod.name }}  </h4>
+          <p class="card-text" Style="height: 100px;">  {{ prod.description }}         </p>
+          <p class="card-text">  </p>
+
+          <div class="row">
+            <div class="col-sm-10">   Compris entre <span class="badge badge-dark">  {{ prod.prixmin }} € </span> & <span class="badge badge-danger">{{ prod.prixmax }} €  </span>     </div>
+            <div class="col-sm-2"> <a (click)="addShop(1993)" data-toggle="modal" data-target="#Modal1"  class="pull-right"> <i class="fa fa-plus-square fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>  </div>
+          </div>
+
+        </div>
+        <div class="card-footer text-muted">
+          Publier il y a {{ prod.days }} jours.
+        </div>
+
+      </div>
+    </ng-container>
+
+
+  </ng-container>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel"  > Hop ! C’est dans mon panier </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <hr>
+
+      <div class="modal-body" STYLE=" text-align: center; " >
+
+        <div class="row" >
+
+          <div class="col-sm-4">
+            <a data-dismiss="modal" aria-label="Close" class="btn btn-dark" STYLE="color:white;"  > CONTINUER MA RECHERCHE </a>
+          </div>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-4">
+
+            <a  class="btn btn-dark" href="shop"   > VOIR MON PANIER </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5  class="modal-title" id="exampleModalLabel"  > Alerte </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <hr>
+
+      <div class="modal-body" STYLE=" text-align: center; " >
+
+        <div class="row" >
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4">
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+

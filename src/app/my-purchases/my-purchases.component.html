@@ -1,0 +1,66 @@
+
+<br>
+
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Mes achats</li>
+  </ol>
+</nav>
+
+
+
+
+<br>
+
+
+
+
+
+<table class="table">
+  <caption>Offres d'achats</caption>
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Produit </th>
+
+    <th scope="col" style="text-align: center;" >Proposition</th>
+    <th scope="col" style="text-align: center;" >Etat de la demande</th>
+    <th scope="col" style="text-align: center;" > Coordonnées </th>
+    <th scope="col"> </th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <tr>
+    <th  scope="row"> <span class="badge badge-dark">1</span></th>
+
+    <td> <i class="fa fa-info-circle" aria-hidden="true"></i> Macbook pro </td>
+
+    <td>
+
+      <div class="col-lg-12 pull-left" >
+        <div class="input-group" >
+          <span class="input-group-addon">€</span>
+          <span class="input-group-addon"> 5 </span>
+          <input style="text-align: center;" type="number" min="" value="30" class="form-control" aria-label="Text input with radio button">
+          <span class="input-group-addon">33</span>
+        </div>
+      </div>
+
+    </td>
+    <td style="text-align: center;" > <span  class="badge badge-warning">En attente </span> </td>
+    <td style="text-align: center;" > Indisponible </td>
+    <td>
+      <a   (click)="DeleteShop(i)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+
+      <a   (click)="AddShop(i)" href="#" class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+    </td>
+  </tr>
+
+
+  </tbody>
+</table>
+
+

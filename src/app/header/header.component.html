@@ -1,0 +1,59 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light " STYLE="background-color: #323232">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+    <i style="color: white;" class="fa fa-stack-exchange fa-2x " aria-hidden="true"></i>
+  </a>
+  <a   class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active">
+        <a class="nav-link " style="color:white;" routerLink="/"  > <i class="fa fa-home" aria-hidden="true"></i> Accueil <span class="sr-only">(current)</span></a>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="LoggedIn=='true'" style="color:white;" routerLink="/dashboard" > <i class="fa fa-tachometer" aria-hidden="true"></i> Tableau de bord </a>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a class="nav-link"  style="color:white;" routerLink="/newad" > <i class="fa fa-plus-circle " aria-hidden="true"></i> Déposer une annonce </a>
+      </li>
+
+      <li>
+
+
+      </li>
+
+    </ul>
+
+
+
+    <a  href="#"  routerLink="shop"   class="pull-right" style="margin-right: 3%;"> <span class="badge badge-pill badge-secondary"> {{ NumberShop }} </span> <i class="fa fa-shopping-basket fa-2x" Style="color: #e7e7e8;" aria-hidden="true"></i>  </a>
+
+    <div *ngIf="LoggedIn=='false'">
+
+      <a  href="login"  class="pull-right" >  <i class="fa fa-sign-in fa-2x" Style="color : #d2d7bb;" aria-hidden="true"></i>  </a>
+
+
+    </div>
+
+
+
+    <div *ngIf="LoggedIn=='true'">
+      <a (click)="Logout()" href="#" class="pull-right" style="color:white;" >  Bonjour {{  UserName }}, Se deconnecter  <i class="fa fa-sign-out " Style="color : 	#a48c60;" aria-hidden="true"></i>  </a>
+    </div>
+
+
+  </div>
+</nav>
+
