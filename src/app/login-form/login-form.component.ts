@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import {BrowserModule} from '@angular/platform-browser';
 import { UserService} from '../user.service';
 import {LocalStorageService, SessionStorageService,LocalStorage, SessionStorage} from 'ngx-webstorage';
+import { HttpClient } from '@angular/common/http';
+import { HttpParams , HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -19,17 +21,15 @@ export class LoginFormComponent implements OnInit {
 
 
 
-  constructor( private localSt:LocalStorageService , private router:Router ) { }
+  constructor( private localSt:LocalStorageService , private router:Router, private http: HttpClient ) { }
 
 
 
 
+results: string[];
 
+ngOnInit(){ }
 
-  ngOnInit() {
-
-
-   }
 
 
 
@@ -51,25 +51,36 @@ public Eshopping ;
 
    loginUser(e){
 
-    e.preventDefault();
+     e.preventDefault();
 
   	let username = e.target.elements[0].value;
   	let password = e.target.elements[1].value;
 
-    if( password == 'admin') {
+    let header = new HttpHeaders();
+    header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+
+
+    this.http.get('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ).subscribe(data => {
+
+      this.localSt.store('StateLoggedIn', data.Auth );
+      this.localSt.store('Username', data.name+'.'+data.fname );
+      this.localSt.store('IdUser', data.idus );
+      let etat = 'true';
+
+        if( true ) {
+        this.router.navigate(['dashboard']);
+         }else{
+         alert('error');
+         }
+
+
+      });
 
 
 
-      this.localSt.store('StateLoggedIn', 'true' );
-      this.localSt.store('Username', username );
-      this.localSt.store('IdUser', 1993 );
-      this.router.navigate(['dashboard']);
 
 
-      	}
-
-
-}
+    }
 
 
 
