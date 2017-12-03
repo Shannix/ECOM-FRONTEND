@@ -1,10 +1,14 @@
+
 import { Component , OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 import {LocalStorageService, SessionStorageService,LocalStorage, SessionStorage} from 'ngx-webstorage';
 import { UserService} from '../user.service';
-
+import { HttpClient } from '@angular/common/http';
+import { HttpParams , HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'app-shopping',
@@ -16,15 +20,15 @@ import { UserService} from '../user.service';
 export class ShoppingComponent implements OnInit {
 
 
-   constructor(private router:Router ,  private localSt:LocalStorageService  ) { }
+   constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
 
-  ngOnInit() {
-  }
+
+
+  ngOnInit() { }
 
 
 public UserName : string = this.localSt.retrieve('Username');
 public LoggedIn = this.localSt.retrieve('StateLoggedIn');
-
 
 
 public nombreShop=1;
@@ -34,6 +38,8 @@ this.nombreShop=this.nombreShop+1;
 }
 
 //GET INFOS ----
+getproduit: produit ;
+
 public PrName : string = "..." ;
 public Prdescription : string = "...";
 public PrPicture : string = "macbook.jpeg";
@@ -41,13 +47,28 @@ public PrPrixmin : number = 0;
 public PrPrixmax : number = 0;
 
 
+getProductInfoCall(id){
+
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+
+}
+
+
+
+
 PickInfo = function(idpr){
 
-this.PrName   = "AAAA." ;
-this.Prdescription  = "AAAA.";
-this.PrPicture = "macbook.jpeg";
-this.PrPrixmin  = 10;
-this.PrPrixmax  = 20;
+this.getProductInfoCall(idpr).subscribe(data => { this.getproduit = data;
+
+  this.PrName   = this.getproduit['title'] ;
+  this.Prdescription  = this.getproduit['description'] ;
+  this.PrPicture = this.getproduit['linkpicture'];
+  this.PrPrixmin  = this.getproduit['pricemin'];
+  this.PrPrixmax  = this.getproduit['pricemax'];
+
+   });
 
 }
 
@@ -71,16 +92,17 @@ DeleteShop = function(id){
 
 
 
-export class commande {
+export interface produit {
 
- constructor(
-	public idpr: number,
-  public idus : number,
-	public name : string,
-  public prixmin: number,
-  public prixmax: number,
-  public price : number
 
-  ) { }
+    pricemin: number;
+    pricemax: number;
+    zipcode : number;
+	  linkpicture : string;
+    idus: number;
+    description: string;
+    idpr : number;
+    title : string;
+    expiration_date: string;
 
 }

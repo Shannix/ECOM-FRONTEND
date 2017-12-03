@@ -4,8 +4,12 @@ import 'rxjs/add/operator/switchMap';
 
 import {LocalStorageService, SessionStorageService,LocalStorage, SessionStorage} from 'ngx-webstorage';
 import { UserService} from '../user.service';
-import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { HttpParams , HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 @Component({
@@ -17,24 +21,88 @@ export class OffersComponent implements OnInit {
 
 
  public selectedId;
+ getproduit: produit ;
+ getoffers: offer[] ;
 
-  constructor(private router:Router , private route: ActivatedRoute,   private localSt:LocalStorageService  ) { }
+
+//GET INFOS ----
+
+public PrName : string = "..." ;
+public Prdescription : string = "...";
+public PrPicture : string = "error.jpg";
+public PrPrixmin : number = 0;
+public PrPrixmax : number = 0;
+
+constructor(private router:Router , private route: ActivatedRoute,   private localSt:LocalStorageService , private http: HttpClient ) { }
+
+getProductInfoCall(id){
+  let header = new HttpHeaders();
+  header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+}
+
+  getOffersCall(idpr){
+  let header = new HttpHeaders();
+  header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<offer[]>('http://localhost:8080/JPAEJB/myoffers?choice=4&ID='+idpr, { headers:header, responseType:'json' } ) ;
+  }
+
+
+
+
+
 
   ngOnInit() {
 
 this.route.params.subscribe(params => {
       this.selectedId = params['id']; //the value of id
     });
+
+
+this.getProductInfoCall(this.selectedId).subscribe(data => { this.getproduit = data;
+
+  this.PrName   = this.getproduit['title'] ;
+  this.Prdescription  = this.getproduit['description'] ;
+  this.PrPicture = this.getproduit['linkpicture'];
+  this.PrPrixmin  = this.getproduit['pricemin'];
+  this.PrPrixmax  = this.getproduit['pricemax'];
+
+   });
+
+this.getOffersCall(this.selectedId).subscribe(data => { this.getoffers = data; });
+
             }
 
 
 
 
 
+}
 
 
+export interface produit {
 
 
+    pricemin: number;
+    pricemax: number;
+    zipcode : number;
+	  linkpicture : string;
+    idus: number;
+    description: string;
+    idpr : number;
+    title : string;
+    expiration_date: string;
 
+}
+
+export interface offer {
+
+
+    idcm : number;
+    data : string;
+    price : number;
+    idus : number;
+    state : number;
+    idpr : number;
 
 }

@@ -6,6 +6,9 @@ import { UserService} from '../user.service';
 import {LocalStorageService, SessionStorageService,LocalStorage, SessionStorage} from 'ngx-webstorage';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams , HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 @Component({
@@ -14,6 +17,9 @@ import { HttpParams , HttpHeaders } from '@angular/common/http';
   styleUrls: ['./login-form.component.css']
 
 })
+
+
+
 
 
 
@@ -26,9 +32,22 @@ export class LoginFormComponent implements OnInit {
 
 
 
-results: string[];
+results: connect ;
 
-ngOnInit(){ }
+
+
+getUserLoginCall(username,password){
+
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<connect>('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
+
+}
+
+
+
+
+ngOnInit(): void  { }
 
 
 
@@ -56,27 +75,20 @@ public Eshopping ;
   	let username = e.target.elements[0].value;
   	let password = e.target.elements[1].value;
 
-    let header = new HttpHeaders();
-    header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+
+this.getUserLoginCall(username,password).subscribe(data => {
+
+   this.results = data;
+   this.localSt.store('StateLoggedIn', this.results['Auth'] );
+   this.localSt.store('Username', this.results['fname'] );
+   this.localSt.store('idus', this.results['idus'] );
 
 
-    this.http.get('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ).subscribe(data => {
+    if( this.results['Auth'] == "true" ){
+     this.router.navigate(['dashboard']);
+    }else{  alert( ' Email ou Mot de passe érroné ' ) ; }
 
-      this.localSt.store('StateLoggedIn', data.Auth );
-      this.localSt.store('Username', data.name+'.'+data.fname );
-      this.localSt.store('IdUser', data.idus );
-      let etat = 'true';
-
-        if( true ) {
-        this.router.navigate(['dashboard']);
-         }else{
-         alert('error');
-         }
-
-
-      });
-
-
+    });
 
 
 
@@ -101,4 +113,25 @@ export class commande {
 
   ) { }
 
+}
+
+
+
+export interface connect {
+
+
+    subscribdate: string;
+   fname : string;
+	 phone : string;
+    Auth: string;
+  idus: string;
+    name : string;
+
+
+}
+
+
+export interface ItemsResponse {
+
+  res: string[];
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-
 import { Router } from '@angular/router';
 
 import {LocalStorageService, SessionStorageService,LocalStorage, SessionStorage} from 'ngx-webstorage';
 import { UserService} from '../user.service';
 
+import { HttpClient } from '@angular/common/http';
+import { HttpParams , HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 @Component({
@@ -15,10 +18,34 @@ import { UserService} from '../user.service';
 })
 export class SearchProductComponent implements OnInit {
 
-  constructor(private router:Router ,  private localSt:LocalStorageService  ) { }
 
-  ngOnInit() {  }
+  constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
 
+
+Products :produit[];
+
+
+  getProductInfoCall(id){
+
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+
+  }
+
+  getProductsCall(){
+  let header = new HttpHeaders();
+  header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<produit[]>('http://localhost:8080/JPAEJB/product?choice=5', { headers:header, responseType:'json' } ) ;
+  }
+
+
+  ngOnInit():void {
+   this.getProductsCall().subscribe(data => { this.Products = data;  });
+   }
+
+
+// DEFAULT FILTRE
 CPAMMIN=0;
 CPAMMAX=10000;
 CPAMCP=38000;
@@ -26,65 +53,33 @@ CPAMSEARCH = "";
 
 
 
-
-  Products = [
-    new Product(1, 99, 'MacBook pro', 'petite description', 'macbook.jpeg', 450 , 850,38000 , 2 ),
-    new Product(2, 99, 'Ecrans 19 pouces ', 'petite description', 'macbook.jpeg', 50 , 80 ,38000 ,3),
-    new Product(3, 99, 'Sweet M ', 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', 'macbook.jpeg', 15 , 25,38000 , 4 ),
-    new Product(3, 99, 'Sweet M ', 'petite description', 'macbook.jpeg', 29 , 33 ,38000 ,10 )
-  ];
-
-
-
 public Panier =  this.localSt.retrieve('Eshopping');
 
+    addShop = function(id){
 
+  this.getProductInfoCall(id).subscribe(data => {
+    this.Panier.push(data);
+    this.localSt.store('Eshopping', this.Panier );
+  });
 
-
-addShop = function(id){
-
-this.Panier.push(new commande( 44, 99, 'commande test', 50, 3200,  8500 ) );
-this.localSt.store('Eshopping', this.Panier );
-
-}
-
-
-
+     }
 
 }
 
 
 
 
-export class Product {
 
- constructor(
-	public idpr: number,
-  public idus : number,
-	public name : string,
-  public description : string,
-  public picture : string ,
-  public prixmin : number ,
-  public prixmax : number,
-  public codepostale : number,
-  public days : number
+export interface produit {
 
-  ) { }
-
-}
-
-
-
-export class commande {
-
- constructor(
-	public idpr: number,
-  public idus : number,
-	public name : string,
-  public prixmin: number,
-  public prixmax: number,
-  public price : number
-
-  ) { }
+    pricemin: number;
+    zipcode : number;
+    pricemax: number;
+    linkpicture : string;
+    idus: number;
+    description: string;
+    idpr : number;
+    title :string;
+    expiration_date: string;
 
 }

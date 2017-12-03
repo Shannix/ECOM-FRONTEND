@@ -89,23 +89,23 @@
   </div>
 
   <ng-container *ngFor="let prod of Products  " >
-    <ng-container *ngIf=" CPAMMIN <= prod.prixmin && CPAMMAX >= prod.prixmax && prod.codepostale==CPAMCP  "  >
-      <div *ngIf="(prod.name).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4">
+    <ng-container *ngIf=" CPAMMIN <= prod.pricemin && CPAMMAX >= prod.pricemax && prod.zipcode==CPAMCP  "  >
+      <div *ngIf="(prod.title).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4">
 
-        <img  class="card-img-top" width="50" height="300" src="./assets/image/{{prod.picture}}" alt="image">
+        <img  class="card-img-top" width="50" height="300" src="./assets/image/{{prod.linkpicture}}" alt="image">
         <div  class="card-body bg-light">
-          <h4 class="card-title">{{ prod.name }}  </h4>
+          <h4 class="card-title">{{ prod.title }}  </h4>
           <p class="card-text" Style="height: 100px;">  {{ prod.description }}         </p>
           <p class="card-text">  </p>
 
           <div class="row">
-            <div class="col-sm-10">   Compris entre <span class="badge badge-dark">  {{ prod.prixmin }} € </span> & <span class="badge badge-danger">{{ prod.prixmax }} €  </span>     </div>
-            <div class="col-sm-2"> <a (click)="addShop(1993)" data-toggle="modal" data-target="#Modal1"  class="pull-right"> <i class="fa fa-plus-square fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>  </div>
+            <div class="col-sm-10">   Compris entre <span class="badge badge-dark">  {{ prod.pricemin }} € </span> & <span class="badge badge-danger">{{ prod.pricemax }} €  </span>     </div>
+            <div class="col-sm-2"> <a (click)="addShop(prod.idpr)" data-toggle="modal" data-target="#Modal1"  class="pull-right"> <i class="fa fa-plus-square fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>  </div>
           </div>
 
         </div>
         <div class="card-footer text-muted">
-          Publier il y a {{ prod.days }} jours.
+          Expire le  {{ prod.expiration_date  }} .
         </div>
 
       </div>
