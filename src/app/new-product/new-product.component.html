@@ -36,9 +36,9 @@
 
       <a   (click)="DeleteProduct(prod.idpr)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-      <a   (click)="GoDons(prod.idpr)" href="#" class="pull-right" style="margin-right: 4%;"> <i class="fa fa-handshake-o fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <a   (click)="GoDons(prod.idpr)"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-handshake-o fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
 
-      <a   (click)="UpdateProduct(prod.idpr)"   data-toggle="modal" data-target="#Modal3"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-pencil-square fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+      <a   (click)="PickInfo(prod.idpr)" (click)="UpdateProduct(prod.idpr)"   data-toggle="modal" data-target="#Modal3"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-pencil-square fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
       <a   (click)="ViewProductDetail(prod.idpr)"   class="pull-right" style="margin-right: 4%;" > <i class="fa fa-tasks fa-2x" Style="color: #17333e;" aria-hidden="true"></i> </a>
 
@@ -75,6 +75,7 @@
           <div class="col-sm-6">
             <p class="card-text" Style="height: 200px;">  {{ Prdescription }}         </p>
             <p class="card-text"> Compris entre <span class="badge badge-dark">  {{ PrPrixmin }} € </span> & <span class="badge badge-danger">{{ PrPrixmax }} €  </span>    </p>
+            <p class="card-text"> Expire le :    </p>
 
 
           </div>
@@ -129,15 +130,16 @@
           <div class="col-sm-12">
             <form (submit)="UpdateProduct($event)"   Style="text-align: center;">
 
+
               <div class="form-group">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Intitulé">
+                  <input type="text" class="form-control" value="{{ PrName }}" placeholder="Intitulé">
                 </div>
               </div>
 
               <div class="form-group">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Description">
+                  <input type="text" class="form-control" value="{{ Prdescription }}" placeholder="Description">
                 </div>
               </div>
 
@@ -145,7 +147,7 @@
 
               <div class="form-group">
                 <div class="col">
-                  <input type="date" class="form-control" placeholder="Date limite">
+                  <input type="date" class="form-control" value="{{PrdateExpiration}}" placeholder="Date limite">
                   <p> Editer la date d'expiration de la publication. </p>
                 </div>
               </div>

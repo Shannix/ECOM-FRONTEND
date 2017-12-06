@@ -48,16 +48,16 @@
 
   <ng-container *ngFor="let offer of getoffers ;let i = index; " >
   <tr >
-    <th  scope="row"> <span class="badge badge-dark">1</span></th>
+    <th  scope="row"> <span class="badge badge-dark">{{i+1}}</span></th>
 
-    <td> <i class="fa fa-info-circle" aria-hidden="true"></i> Derradji {{ offer.idus }} </td>
+    <td><a (click)="PickInfo(prod.idpr)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" >   <i class="fa fa-info-circle" aria-hidden="true"></i>  Derradji {{ offer.idsc }} </a></td>
 
     <td>
 
       <div class="col-lg-12 pull-left" >
         <div class="input-group" >
 
-          <span class="input-group-addon"> {{PrPrixmin}} </span>
+          <span class="input-group-addon"> {{ PrPrixmin }}  </span>
           <input style="text-align: center;" type="number" min="" value="{{offer.price}}" class="form-control" aria-label="Text input with radio button">
           <span class="input-group-addon">{{PrPrixmax}}</span>
           <span class="input-group-addon">€</span>
@@ -66,11 +66,15 @@
 
     </td>
     <td>
-      <a   (click)="DeleteShop(selectedId)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-      <a   (click)="AddShop(selectedId)" href="#" class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <a *ngIf="offer.state==0"  (click)="refuseoffer(offer.idsc)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+      <a *ngIf="offer.state==0"  (click)="checkoffer(offer.idsc)"   class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <span  class="badge badge-pill badge-warning"  *ngIf="offer.state==1"  > <i class="fa fa-check-square" Style="color:white; " aria-hidden="true"></i>  </span>
+      <span  class="badge badge-pill badge-success"  *ngIf="offer.state==3"  > <i class="fa fa-check-square" aria-hidden="true"></i>  </span>
+      <span  class="badge badge-pill badge-danger"  *ngIf="offer.state==2"  > <i class="fa fa-close" aria-hidden="true"></i>  </span>
+
     </td>
-  </tr>
+     </tr>
 
   </ng-container>
   </tbody>

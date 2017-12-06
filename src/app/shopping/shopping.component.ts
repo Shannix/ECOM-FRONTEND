@@ -22,20 +22,43 @@ export class ShoppingComponent implements OnInit {
 
    constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
 
-
-
   ngOnInit() { }
 
 
+@LocalStorage()
+public StateLoggedIn ;
+
+@LocalStorage()
+public Username ;
+
+@LocalStorage()
+public IdUser ;
+
+
+@LocalStorage()
+public Eshopping ;
+
+
+results: connect ;
 public UserName : string = this.localSt.retrieve('Username');
 public LoggedIn = this.localSt.retrieve('StateLoggedIn');
 
 
-public nombreShop=1;
+getUserLoginCall(username,password){
 
-Increment = function(){
-this.nombreShop=this.nombreShop+1;
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<connect>('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
+
 }
+
+
+
+
+
+
+
+
 
 //GET INFOS ----
 getproduit: produit ;
@@ -52,9 +75,7 @@ getProductInfoCall(id){
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
     return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
-
 }
-
 
 
 
@@ -76,11 +97,8 @@ public Panier =  this.localSt.retrieve('Eshopping');
 
 
 
-
-
 DeleteShop = function(id){
-
- this.localSt.store('Eshopping', this.Panier.splice(id,1) );
+   this.localSt.store('Eshopping', this.Panier.splice(id,1) );
 }
 
 
@@ -104,5 +122,18 @@ export interface produit {
     idpr : number;
     title : string;
     expiration_date: string;
+
+}
+
+export interface connect {
+
+
+    subscribdate: string;
+   fname : string;
+	 phone : string;
+    Auth: string;
+  idus: string;
+    name : string;
+
 
 }

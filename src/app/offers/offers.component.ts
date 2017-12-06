@@ -50,6 +50,17 @@ getProductInfoCall(id){
 
 
 
+postRefuseOfferCall(id,st){
+  let header = new HttpHeaders();
+  header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=2&ID='+id+'&ST='+st, { headers:header, responseType:'json' } ) ;
+  }
+
+checkoffer = function(id){ this.postRefuseOfferCall(id,1).subscribe(data => { }); }
+
+refuseoffer = function(id){ this.postRefuseOfferCall(id,2).subscribe(data => { }); }
+
+
 
 
   ngOnInit() {
@@ -97,7 +108,7 @@ export interface produit {
 
 export interface offer {
 
-
+    idsc : number;
     idcm : number;
     data : string;
     price : number;
