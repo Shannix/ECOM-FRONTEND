@@ -53,6 +53,40 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
 }
 
 
+ loginUser(e){
+
+     e.preventDefault();
+
+  	let username = e.target.elements[0].value;
+  	let password = e.target.elements[1].value;
+
+
+this.getUserLoginCall(username,password).subscribe(data => {
+
+   this.results = data;
+   this.localSt.store('StateLoggedIn', this.results['Auth'] );
+   this.localSt.store('Username', this.results['fname'] );
+   this.localSt.store('idus', this.results['idus'] );
+
+
+    if( this.results['Auth'] == "true" ){
+     this.router.navigate(['shop']);
+    }else{  alert( ' Email ou Mot de passe érroné ' ) ; }
+
+    });
+
+
+
+    }
+
+
+postProductPurchaseCall(username,password){
+
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<connect>('http://localhost:8080/JPAEJB/myoffers?choice=0', { headers:header, responseType:'json' } ) ;
+
+}
 
 
 
@@ -100,6 +134,20 @@ public Panier =  this.localSt.retrieve('Eshopping');
 DeleteShop = function(id){
    this.localSt.store('Eshopping', this.Panier.splice(id,1) );
 }
+
+
+
+AddShop = function(id){
+    this.localSt.store('Eshopping', this.Panier.splice(id,1) );
+
+    this.router.navigate(['mypurchases']);
+}
+
+
+
+
+
+
 
 
 

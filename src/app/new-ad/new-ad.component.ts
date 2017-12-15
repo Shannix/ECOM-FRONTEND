@@ -51,8 +51,43 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
 }
 
 
+getProductInsertCall(idus,inti,desc,categ,pricemin,pricemax,postale,date,link){
 
- loginUser(e){
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get<error>('http://localhost:8080/JPAEJB/product?choice=0&idus='+idus+'&title='+inti+'&desc='+desc+'&categ='+categ+'&pricemin='+pricemin+'&pricemax='+pricemax+'&postale='+postale+'&date='+date+'&link='+link, { headers:header, responseType:'json' } ) ;
+}
+
+
+
+
+RegisterProduct(e){
+    e.preventDefault();
+
+  	let inti = e.target.elements[0].value;
+  	let desc = e.target.elements[1].value;
+    let categ = e.target.elements[2].value;
+    let pricemin = e.target.elements[3].value;
+    let pricemax = e.target.elements[4].value;
+    let postale = e.target.elements[5].value;
+    let date = e.target.elements[6].value;
+    let link = 'error.jpg'
+
+  this.getProductInsertCall(this.localSt.retrieve('idus'),inti,desc,categ,pricemin,pricemax,postale,date,link).subscribe(data => {
+
+    if( data['error'] == "false" ){
+     this.router.navigate(['newad']);
+    }else{  alert( "Ajout impossible du produit." ) ; }
+
+       });
+
+  }
+
+
+
+
+
+     loginUser(e){
 
      e.preventDefault();
 

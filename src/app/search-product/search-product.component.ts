@@ -9,12 +9,13 @@ import { HttpParams , HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-search-product',
   templateUrl: './search-product.component.html',
-  styleUrls: ['./search-product.component.css']
+  styleUrls: ['./search-product.component.css'],
+  pipes: [ SortPipe ]
 })
 export class SearchProductComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class SearchProductComponent implements OnInit {
 
 
 Products :produit[];
-
+public idus : number = this.localSt.retrieve('idus');
 
   getProductInfoCall(id){
 
@@ -45,28 +46,59 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
    }
 
 
+
+
+
 // DEFAULT FILTRE
 CPAMMIN=0;
-CPAMMAX=10000;
+CPAMMAX=1000;
 CPAMCP=38000;
 CPAMSEARCH = "";
-
+CPAMCATEG = "" ;
 
 
 public Panier =  this.localSt.retrieve('Eshopping');
 
     addShop = function(id){
 
-  this.getProductInfoCall(id).subscribe(data => {
+    this.getProductInfoCall(id).subscribe(data => {
     this.Panier.push(data);
     this.localSt.store('Eshopping', this.Panier );
-  });
+
+    });
 
      }
+
+GoDon= function(){
+this.CPAMMIN = 0;
+this.CPAMMAX = 0;
+}
+
+GoAll= function(){
+this.CPAMMIN = 0;
+this.CPAMMAX = 1000;
+}
+
 
 }
 
 
+
+@Pipe({name: "sortBy"})
+export class SortPipe {
+ transform(array: Array<any>): Array<any> {
+    array.sort((a: any, b: any) => {
+      if (a.title < b.title) {
+        return -1;
+      } else if (a.title > b.title) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    return array;
+  }
+}
 
 
 
@@ -81,5 +113,7 @@ export interface produit {
     idpr : number;
     title :string;
     expiration_date: string;
+    diff: number;
+    categ: string;
 
 }

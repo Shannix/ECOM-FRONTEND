@@ -14,12 +14,13 @@
       <form (submit)="loginUser($event)"   Style="text-align: center;">
         <div class="form-group">
           <label for="exampleInputEmail1">Mon e-mail :</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mon e-mail :">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mon e-mail :" required>
 
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Mot de passe </label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" minlength="6" pattern="([A-Z].*[a-z]|[a-z].*[A-Z])" required >
+        <p> Le mot de passe est obligatoire, doit faire 6 caractères au minimum et comporter au moins une majuscule et une minuscule  </p>
         </div>
 
         <div class="form-group">

@@ -19,6 +19,32 @@
 
   <link type="text/css" href="assets/JS/pines-notify/pnotify.css" rel="stylesheet">
 
+  <style>
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+</style>
+
 </head>
 <body Style="font-family: 'Lato', sans-serif;">
 
@@ -49,6 +75,7 @@
 <script type="text/javascript" src="assets/JS/pines-notify/pnotify.min.js"></script>
 
 
+<script src="assets/JS/popper.min.js"></script>
 
 
 <script>
@@ -65,7 +92,11 @@
 });
 </script>
 
-
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 </body>
 </html>

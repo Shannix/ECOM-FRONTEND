@@ -16,46 +16,90 @@
     <div class="card">
       <div class="card-body">
 
+        <form (submit)="RegisterProduct($event)"   Style="text-align: center;">
 
 
-        <div class="form-group">
-          <div class="col">
-            <input type="text" class="form-control" maxlength="55" placeholder="Intitulé">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col">
-            <input type="text" maxlength="200" STYLE="height : 80px;" class="form-control" placeholder="Description">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <input type="number" class="form-control" placeholder="Prix min" value="0">
-            <p> Fourchette de prix du produit. </p>
-          </div>
-          <div class="col">
-            <input type="number" class="form-control" placeholder="Prix max">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"> Intitulé </label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" maxlength="55" required >
           </div>
 
         </div>
 
         <div class="form-group">
           <div class="col">
-            <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" maxlength="5" placeholder="Code postal" >
+            <input type="text" maxlength="200" STYLE="height : 80px;" class="form-control" placeholder="Description" required>
           </div>
         </div>
 
-        <div class="form-group">
+          <div class="form-group row">
+          <label class="col-sm-3 col-form-label"> Catégorie </label>
+            <div class="col-sm-9">
+              <select  style="width : 100%" class="form-control">
+                <option>Autres</option>
+                <option> Informatique </option>
+                <option> Telephone </option>
+                <option>Utilitaires</option>
+                <option>Equipement</option>
+                <option>Nautisme</option>
+                <option> Bureaux</option>
+                <option> Consoles - Jeux vidéo</option>
+                <option>Image - Son</option>
+                <option> Téléphonie</option>
+                <option>DVD / Films</option>
+                <option>Livres</option>
+                <option>Animaux</option>
+                <option>Vélos</option>
+                <option> Sports</option>
+                <option>Collection</option>
+                <option>Vins - Gastronomie</option>
+                <option>Billetterie</option>
+                <option>Ameublement</option>
+                <option>Electroménager</option>
+                <option>Décoration</option>
+                <option> Bricolage</option>
+                <option> Vêtements</option>
+                <option> Chaussures</option>
+                <option>Accessoires</option>
+                <option> Montres - Bijoux</option>
+
+
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Prix </label>
+            <div class="col-sm-5">
+            <input type="number" class="form-control" placeholder="Prix min" value="0" required>
+
+          </div>
+            <div class="col-sm-5">
+            <input type="number" class="form-control" placeholder="Prix max" value="1000" required>
+          </div>
+            <p style="margin-left: 18%;" > Fourchette de prix du produit. </p>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"> Code postal </label>
           <div class="col">
-            <input type="date" class="form-control" placeholder="Date limite">
-            <p> Date d'expiration de la publication. </p>
+            <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" maxlength="5" placeholder="Code postal" required >
+          </div>
+        </div>
+
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label"> Date d'expiration </label>
+          <div class="col">
+            <input type="date" class="form-control" placeholder="Date limite" required>
+
           </div>
         </div>
 
 
-        <div class="form-group">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label"> Image </label>
           <div class="col">
             <input type="file" name="image" >
             <p> Charger une image descriptive du produit à vendre. </p>
@@ -64,7 +108,7 @@
 
 
         <button  type="submit" class="btn btn-primary pull-right"> Publier  </button>
-
+        </form>
       </div>
     </div>
   </div>

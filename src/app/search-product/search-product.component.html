@@ -10,12 +10,53 @@
       <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
       <input type="text" class="form-control" [(ngModel)]="CPAMSEARCH" placeholder="Que recherchez-vous?" aria-label="">
       <span class="input-group-btn">
-        <button  (click)="GoSearch()"  class="btn btn-secondary animated tada" type="button"> <i class="fa fa-refresh" aria-hidden="true"></i>  </button>
+
+
+          <button  (click)="GoSearch()" class="btn btn-secondary animated tada" data-toggle="tooltip" title="Rechercher"   type="button"> <i class="fa fa-refresh" aria-hidden="true"></i>  </button>
+
+
+        <div class="btn-group" role="group" data-toggle="tooltip" title="Trier par prix" >
+    <button       id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu"  aria-labelledby="btnGroupDrop1" >
+      <a class="dropdown-item"   ><i class="fa fa-sort-asc" aria-hidden="true"></i></a>
+      <a class="dropdown-item" ><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+      <a class="dropdown-item" (click)="CPAMMIN=0; CPAMMAX=50; " >   Entre 0 et 50    </a>
+      <a class="dropdown-item" (click)="CPAMMIN=50; CPAMMAX=200; " >   Entre 50 et 200  </a>
+      <a class="dropdown-item" (click)="CPAMMIN=200; CPAMMAX=500; ">   Entre 200 et 500  </a>
+      <a class="dropdown-item" (click)="CPAMMIN=500; CPAMMAX=1000; " >   Entre 500 et 1000  </a>
+    </div>
+    </div>
+
+        <div class="btn-group" role="group" data-toggle="tooltip" title="Trier par titre">
+    <button id="btnGroupDrop2" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+      <a class="dropdown-item"  ><i class="fa fa-sort-asc" aria-hidden="true"></i></a>
+      <a class="dropdown-item" ><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+    </div>
+    </div>
+
+
+        <button  (click)="GoAll()" class="btn btn-dark" data-toggle="tooltip" title="Toutes les annonces"   type="button"> <i class="fa fa-bullseye" aria-hidden="true"></i>  </button>
+
+
+         <button  (click)="GoDon()" class="btn btn-secondary" data-toggle="tooltip" title="Annonces en don"   type="button"> <i class="fa fa-handshake-o" aria-hidden="true"></i>  </button>
+
+
+
+
               </span>
     </div>
+
+
   </div>
 
 </div>
+
+
 
 
 <div class="row">
@@ -32,27 +73,54 @@
 
         <div class="row" >
           <div class="col-lg-11" style="margin: 4%;">
-            <select style="width : 100%">
+            <select [(ngModel)]="CPAMCATEG" style="width : 100%">
+              <option>  </option>
               <option> Informatique </option>
               <option> Telephone </option>
-              <option> Autre </option>
+              <option>Utilitaires</option>
+              <option>Equipement</option>
+              <option>Nautisme</option>
+              <option> Bureaux</option>
+              <option> Consoles - Jeux vidéo</option>
+              <option>Image - Son</option>
+              <option> Téléphonie</option>
+              <option>DVD / Films</option>
+              <option>Livres</option>
+              <option>Animaux</option>
+              <option>Vélos</option>
+              <option> Sports</option>
+              <option>Collection</option>
+              <option>Vins - Gastronomie</option>
+              <option>Billetterie</option>
+              <option>Ameublement</option>
+              <option>Electroménager</option>
+              <option>Décoration</option>
+              <option> Bricolage</option>
+              <option> Vêtements</option>
+              <option> Chaussures</option>
+              <option>Accessoires</option>
+              <option> Montres - Bijoux</option>
+              <option>Autres</option>
+
+
             </select>
           </div>
         </div>
 
 
+        <div class="tile-icon " style="margin: 3%;"> <H5>  <i class="fa fa-eur "></i> Prix - de {{CPAMMIN}} à {{CPAMMAX}} €  </H5>    </div>
 
-        <div class="tile-icon " style="margin: 3%;"> <H5>  <i class="fa fa-eur "></i> Prix </H5> </div>
 
+        <div class="row" style="margin: 0%;">
 
-        <div class="row" style="margin: 1%;">
-          <div class="col">
-            <input type="number" [(ngModel)]="CPAMMIN"  class="form-control" value="0">
+          <div class="col-sm-6">
+            <input type="number" [(ngModel)]="CPAMMIN" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3"  class="form-control" value="0">
           </div>
-          <span class="input-group-addon" style="background-color: #323232; color:white;border-radius: 10px;">€</span>
-          <div class="col">
-            <input type="number" [(ngModel)]="CPAMMAX"  class="form-control" placeholder="Max">
-          </div>
+
+            <div class="col-sm-6" >
+            <input type="number" [(ngModel)]="CPAMMAX" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4"  class="form-control" placeholder="Max">
+            </div>
+
         </div>
 
         <hr Style="background-color:white;">
@@ -88,29 +156,48 @@
 
   </div>
 
+
+
   <ng-container *ngFor="let prod of Products  " >
+    <ng-container *ngIf=" CPAMCATEG =='' ||  CPAMCATEG == prod.categ   "  >
     <ng-container *ngIf=" CPAMMIN <= prod.pricemin && CPAMMAX >= prod.pricemax && prod.zipcode==CPAMCP  "  >
       <div *ngIf="(prod.title).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4">
 
         <img  class="card-img-top" width="50" height="300" src="./assets/image/{{prod.linkpicture}}" alt="image">
         <div  class="card-body bg-light">
           <h4 class="card-title">{{ prod.title }}  </h4>
-          <p class="card-text" Style="height: 100px;">  {{ prod.description }}         </p>
+          <div class="card-text" Style="height: 100px;">
+
+            <a class="btn btn-link" data-toggle="collapse" href="#collapse{{prod.idpr}}" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>  plus d'informations
+          </a>
+
+          <div class="collapse" id="collapse{{prod.idpr}}">
+            <div class="card card-body">
+              {{ prod.description }}
+            </div>
+          </div>
+
+
+          </div>
+
+
+
           <p class="card-text">  </p>
 
           <div class="row">
             <div class="col-sm-10">   Compris entre <span class="badge badge-dark">  {{ prod.pricemin }} € </span> & <span class="badge badge-danger">{{ prod.pricemax }} €  </span>     </div>
-            <div class="col-sm-2"> <a (click)="addShop(prod.idpr)" data-toggle="modal" data-target="#Modal1"  class="pull-right"> <i class="fa fa-plus-square fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>  </div>
+            <div class="col-sm-2" *ngIf=" prod.idus != idus  " > <a (click)="addShop(prod.idpr)" data-toggle="modal" data-target="#Modal1"  class="pull-right btn btn-secondary" Style="color: white; margin-top: -8px;"   > Soumettre</a>  </div>
           </div>
 
         </div>
         <div class="card-footer text-muted">
-          Expire le  {{ prod.expiration_date  }} .
+          Expire le  {{ prod.expiration_date }} - il reste <span class="badge badge-dark"> {{ prod.diff }} </span>  jours.
         </div>
 
       </div>
     </ng-container>
-
+    </ng-container>
 
   </ng-container>
 

@@ -34,13 +34,13 @@
     <td style="text-align: center;"> <span class="badge badge-pill badge-danger">4</span> </td>
     <td>
 
-      <a   (click)="DeleteProduct(prod.idpr)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+      <a   (click)="DeleteProduct(prod.idpr)"  data-toggle="tooltip" title="Supprimer"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-      <a   (click)="GoDons(prod.idpr)"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-handshake-o fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <a   (click)="GoDons(prod.idpr)" data-toggle="tooltip" title="Passer en don"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-handshake-o fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
 
       <a   (click)="PickInfo(prod.idpr)" (click)="UpdateProduct(prod.idpr)"   data-toggle="modal" data-target="#Modal3"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-pencil-square fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-      <a   (click)="ViewProductDetail(prod.idpr)"   class="pull-right" style="margin-right: 4%;" > <i class="fa fa-tasks fa-2x" Style="color: #17333e;" aria-hidden="true"></i> </a>
+      <a   (click)="ViewProductDetail(prod.idpr)" data-toggle="tooltip" title="Voir les offres"  class="pull-right" style="margin-right: 4%;" > <i class="fa fa-tasks fa-2x" Style="color: #17333e;" aria-hidden="true"></i> </a>
 
     </td>
 

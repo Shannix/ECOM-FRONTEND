@@ -35,6 +35,8 @@
 
 
           <tr *ngFor="let product of Panier;let i = index; "  >
+
+
             <th  scope="row"> <span  class="badge badge-dark">{{ i+1 }} </span></th>
 
             <td   width=30%; ><a (click)="PickInfo(product.idpr)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" > <i class="fa fa-info-circle" aria-hidden="true"> </i>  {{ product.title }} </a></td>
@@ -43,22 +45,23 @@
               <div class="col-lg-12" >
                 <div class="input-group" >
 
-                  <span class="input-group-addon"> {{product.pricemin }}</span>
-                  <input type="number" min="{{product.prixmin }}" value="{{product.pricemin }}" style="text-align:center;" class="form-control" aria-label="Text input with radio button">
-                  <span class="input-group-addon">{{product.pricemax }}</span>
+                  <span class="input-group-addon"> {{product.pricemin }} </span>
+                  <input type="number" min="{{product.prixmin }}" value="{{product.pricemin }}" [(ngModel)]="price" style="text-align:center;" class="form-control" aria-label="Text input with radio button">
+                  <span class="input-group-addon"> {{product.pricemax }} </span>
                   <span class="input-group-addon">€</span>
                 </div>
               </div>
 
             </td>
             <td width=13%; >
-              <a   (click)="DeleteShop(i)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+                <a   (click)="DeleteShop(i)"  class="pull-right"  data-toggle="tooltip" title="Supprimer"  style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
               <div *ngIf="LoggedIn=='true'">
-                <a   (click)="AddShop(product.idpr)" href="#" class="pull-right" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+                <a   (click)="AddShop(product.idpr)" href="#" class="pull-right" data-toggle="tooltip" title="Valider cette offre" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
               </div>
-
             </td>
+
+
           </tr>
 
 
