@@ -10,6 +10,9 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+
+
+
 @Component({
   selector: 'app-shopping',
   templateUrl: './shopping.component.html',
@@ -22,7 +25,9 @@ export class ShoppingComponent implements OnInit {
 
    constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
 
-  ngOnInit() { }
+
+
+
 
 
 @LocalStorage()
@@ -35,13 +40,16 @@ public Username ;
 public IdUser ;
 
 
-@LocalStorage()
-public Eshopping ;
+
+
+
+ngOnInit() { let tt  ;   }
 
 
 results: connect ;
 public UserName : string = this.localSt.retrieve('Username');
 public LoggedIn = this.localSt.retrieve('StateLoggedIn');
+
 
 
 getUserLoginCall(username,password){
@@ -79,14 +87,6 @@ this.getUserLoginCall(username,password).subscribe(data => {
 
     }
 
-
-postProductPurchaseCall(username,password){
-
-let header = new HttpHeaders();
-header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<connect>('http://localhost:8080/JPAEJB/myoffers?choice=0', { headers:header, responseType:'json' } ) ;
-
-}
 
 
 
@@ -127,25 +127,63 @@ this.getProductInfoCall(idpr).subscribe(data => { this.getproduit = data;
 
 }
 
-public Panier =  this.localSt.retrieve('Eshopping');
+
+public Panier =  this.localSt.retrieve('Eshopping2');
+
 
 
 
 DeleteShop = function(id){
-   this.localSt.store('Eshopping', this.Panier.splice(id,1) );
+
+    this.Panier.splice(id,1);
+
+
+   this.localSt.store('Eshopping2', this.Panier );
+
 }
 
 
 
-AddShop = function(id){
-    this.localSt.store('Eshopping', this.Panier.splice(id,1) );
+postProductPurchaseCall(idus,idpr,price){
 
-    this.router.navigate(['mypurchases']);
+let header = new HttpHeaders();
+header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
+    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=0&idus='+idus+'&idpr='+idpr+'&price='+price, { headers:header, responseType:'json' } ) ;
+
 }
 
 
 
+total: number = 0 ;
+totalf: number = 0 ;
 
+
+AddShop = function(id,price){
+
+if(price>=0){
+this.total = this.total+ price;
+this.totalf = this.totalf + price*0.03;
+
+this.postProductPurchaseCall(this.localSt.retrieve('idus'),id,price).subscribe(data => {   });
+
+this.Panier = this.Panier.splice(id,1);
+this.localSt.store('Eshopping2', this.Panier );
+    alert("Nous transmettons votre offre au vendeur.");
+
+}else{
+    alert("il faut saisir une proposition de prix avant de soumettre votre offre. ");
+}
+
+
+// this.router.navigate(['mypurchases']);
+}
+
+
+
+getTotale = function() {
+
+return 0;
+}
 
 
 
@@ -170,6 +208,8 @@ export interface produit {
     idpr : number;
     title : string;
     expiration_date: string;
+    diff: number;
+    categ: string;
 
 }
 

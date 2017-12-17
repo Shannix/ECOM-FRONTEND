@@ -58,7 +58,8 @@
         <div class="input-group" >
 
           <span class="input-group-addon"> {{ PrPrixmin }}  </span>
-          <input style="text-align: center;" type="number" min="" value="{{offer.price}}" class="form-control" aria-label="Text input with radio button">
+          <span class="input-group-addon">€</span>
+          <input readonly style="text-align: center;" type="number" min="" value="{{offer.price}}" class="form-control" aria-label="Text input with radio button">
           <span class="input-group-addon">{{PrPrixmax}}</span>
           <span class="input-group-addon">€</span>
         </div>

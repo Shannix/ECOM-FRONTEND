@@ -26,8 +26,9 @@ export class HeaderComponent implements OnInit {
  public UserName : string = this.localSt.retrieve('Username');
  public LoggedIn = this.localSt.retrieve('StateLoggedIn');
 
-NumberShop = this.localSt.retrieve('Eshopping').length ;
-
+//à revoir
+//NumberShop = this.localSt.retrieve('Eshopping').length ;
+NumberShop = 0;
 
 SearchUser(e){
          e.preventDefault();
