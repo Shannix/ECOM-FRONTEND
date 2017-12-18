@@ -68,8 +68,8 @@
     </td>
     <td>
 
-      <a *ngIf="offer.state==0"  (click)="refuseoffer(offer.idsc)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
-      <a *ngIf="offer.state==0"  (click)="checkoffer(offer.idsc)"   class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <a ONCLICK="history.go(0);"  *ngIf="offer.state==0"  (click)="refuseoffer(offer.idsc)"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+      <a ONCLICK="history.go(0);"  *ngIf="offer.state==0"  (click)="checkoffer(offer.idsc)"   class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
       <span  class="badge badge-pill badge-warning"  *ngIf="offer.state==1"  > <i class="fa fa-check-square" Style="color:white; " aria-hidden="true"></i>  </span>
       <span  class="badge badge-pill badge-success"  *ngIf="offer.state==3"  > <i class="fa fa-check-square" aria-hidden="true"></i>  </span>
       <span  class="badge badge-pill badge-danger"  *ngIf="offer.state==2"  > <i class="fa fa-close" aria-hidden="true"></i>  </span>

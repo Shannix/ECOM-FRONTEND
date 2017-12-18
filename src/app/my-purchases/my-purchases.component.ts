@@ -81,7 +81,9 @@ postDeletePurchaseCall(id){
   }
 
 
-DeletePurchase = function(id){ this.postDeletePurchaseCall(id).subscribe(data => { }); }
+DeletePurchase = function(i,id){
+this.getoffers.splice(i,1);
+this.postDeletePurchaseCall(id).subscribe(data => { }); }
 
 
 

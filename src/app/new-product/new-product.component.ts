@@ -9,6 +9,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
@@ -28,6 +29,7 @@ let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
     return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
 }
+
 
 
 getProductsCall(id){
@@ -81,7 +83,9 @@ postDeleteProductCall(id){
   }
 
 
-DeleteProduct = function(id){ this.postDeleteProductCall(id).subscribe(data => { }); }
+DeleteProduct = function(i,id){
+this.Products.splice(i,1);
+this.postDeleteProductCall(id).subscribe(data => { }); }
 
 postDonProductCall(id){
   let header = new HttpHeaders();

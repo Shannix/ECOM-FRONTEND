@@ -59,9 +59,9 @@
     <td style="text-align: center;" > <span  class="badge badge-warning"  *ngIf="offer.state==0"  > En attente  </span>  <span  class="badge badge-success"  *ngIf="offer.state==1"  > Confirmé  </span> <span  class="badge badge-danger"  *ngIf="offer.state==2"  > Refusé </span>  </td>
     <td style="text-align: center;" >   <span  class="badge badge-warning"  *ngIf="offer.state==0"  > Indisponible </span>  <span  class="badge badge-success"  *ngIf="offer.state==3"  > disponible </span>  <span  class="badge badge-warning"  *ngIf="offer.state==1"  > En Attente de validation </span>   <span  class="badge badge-danger"  *ngIf="offer.state==2"  > Indisponible </span>   </td>
     <td>
-      <a   (click)="DeletePurchase(offer.idsc)" data-toggle="tooltip" title="Retirer mon offre"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
+      <a   (click)="DeletePurchase(i,offer.idsc)" data-toggle="tooltip" title="Retirer mon offre"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-      <a  *ngIf="offer.state==1" data-toggle="tooltip" title="Terminer la transaction avec le vendeur" (click)="checkoffer(offer.idsc)"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+      <a ONCLICK="history.go(0);"  *ngIf="offer.state==1" data-toggle="tooltip" title="Terminer la transaction avec le vendeur" (click)="checkoffer(offer.idsc)"  class="pull-right" style="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
     </td>
   </tr>
   </ng-container>

@@ -1,8 +1,8 @@
 
 <nav aria-label="breadcrumb" role="navigation" style="margin-top: 1%;" xmlns="http://www.w3.org/1999/html">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="">Accueil</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><a href="search">Panier</a></li>
+    <li class="breadcrumb-item"><a routerLink="/" >Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a routerLink="shop"  >Panier</a></li>
   </ol>
 </nav>
 
@@ -47,7 +47,7 @@
 
                   <span class="input-group-addon"> {{product.pricemin }} </span>
                   <span class="input-group-addon">€</span>
-                  <input type="number" min="{{product.prixmin }}" value="0" [(ngModel)]="this['N' + i]" ng-required="true"  style="text-align:center;" class="form-control" required="required" aria-label="Text input with radio button">
+                  <input type="number" min="{{product.pricemin }}" value="0" [(ngModel)]="this['N' + i]" ng-required="true"  style="text-align:center;" class="form-control" required="required" aria-label="Text input with radio button">
                   <span class="input-group-addon"> {{product.pricemax }} </span>
                   <span class="input-group-addon">€</span>
                 </div>
@@ -58,7 +58,7 @@
                 <a   (click)="DeleteShop(i)"  class="pull-right"  data-toggle="tooltip" title="Supprimer"  style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
               <div *ngIf="LoggedIn=='true'">
-                <a   (click)="AddShop(product.idpr, this['N' + i] )"   class="pull-right" data-toggle="tooltip" title="Valider cette offre" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
+                <a   (click)="AddShop(product.pricemin ,i,product.idpr, this['N' + i] )"   class="pull-right" data-toggle="tooltip" title="Valider cette offre" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
               </div>
             </td>
 
@@ -128,8 +128,12 @@
   </div>
 
 
+</div>
 
+<br>
+<button routerLink="/"  type="button" class="btn btn-light pull-center">Revenir en arriére</button>
 
+<a *ngIf="LoggedIn=='true'" href="mypurchases"  class="btn btn-dark">Se diriger vers mes soumissions</a>
 
 
 

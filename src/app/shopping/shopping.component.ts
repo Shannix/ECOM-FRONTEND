@@ -158,20 +158,20 @@ total: number = 0 ;
 totalf: number = 0 ;
 
 
-AddShop = function(id,price){
+AddShop = function(prixmin ,index,id,price){
 
-if(price>=0){
+if(price >= prixmin ){
 this.total = this.total+ price;
 this.totalf = this.totalf + price*0.03;
 
 this.postProductPurchaseCall(this.localSt.retrieve('idus'),id,price).subscribe(data => {   });
 
-this.Panier = this.Panier.splice(id,1);
+this.Panier.splice(index,1);
 this.localSt.store('Eshopping2', this.Panier );
     alert("Nous transmettons votre offre au vendeur.");
 
 }else{
-    alert("il faut saisir une proposition de prix avant de soumettre votre offre. ");
+    alert("il faut saisir une proposition entre la fourchette de prix avant de soumettre cette offre. ");
 }
 
 
