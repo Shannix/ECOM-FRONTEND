@@ -1,3 +1,56 @@
-<p>
-  profile works!
-</p>
+<br>
+<br>
+<br>
+
+<div class="row">
+
+
+  <div class="col col-lg-4"></div>
+
+  <div class="col col-lg-4">
+
+    <h3>  Mon profile </h3> <br>
+
+
+    <form (submit)="RegisterUser($event)"   Style="text-align: center;">
+      <div class="row">
+
+        <div class="col">
+          <input type="text" maxlength="50" value="{{User.nom }}" readonly="readonly" class="form-control" placeholder="Nom">
+        </div>
+
+        <div class="col">
+          <input type="text" maxlength="50" value="{{User.prenom }}" readonly="readonly" class="form-control" placeholder="Prénom">
+        </div>
+      </div>
+      <br>
+
+
+      <div class="form-group">
+        <div class="col">
+          <input type="email" maxlength="50" class="form-control" value="{{User.email }}"  placeholder="Mon e-mail">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col">
+          <input type="number"  maxlength="50" class="form-control" value="{{User.tel }}" placeholder="Mon telephone">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col">
+          <input type="password"  maxlength="50" class="form-control" placeholder="Mot de passe">
+        </div>
+      </div>
+
+
+      <button  type="submit" class="btn btn-primary pull-right"> Mettre à jour </button>
+    </form>
+
+  </div>
+
+
+</div>
+
+

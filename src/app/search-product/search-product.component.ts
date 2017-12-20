@@ -29,7 +29,7 @@ public PanierV3;
    }
 
 
-
+public ipad = "http://152.77.78.15:8080";
 
 public ProductCheck : produit;
 Products :produit[];
@@ -43,10 +43,10 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
 
   }
 
-  getProductsCall(){
+      getProductsCall(){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit[]>('http://localhost:8080/JPAEJB/product?choice=5', { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit[]>('http://152.77.78.15:8080/JPAEJB/product?choice=5', { headers:header, responseType:'json' } ) ;
   }
 
 
@@ -56,9 +56,6 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
   ngOnInit():void {
 
 this.getProductsCall().subscribe(data => { this.Products = data;   });
-
- console.log(this.localSt);
-
 
    }
 

@@ -97,9 +97,12 @@ postRefuseOfferCall(id,st){
 
 checkoffer = function(id){ this.postRefuseOfferCall(id,3).subscribe(data => { }); }
 
+ViewDetail = function(index : any ) { this.router.navigate(['simulate' , index ]); }
+
+
+
 
 }
-
 
 
 

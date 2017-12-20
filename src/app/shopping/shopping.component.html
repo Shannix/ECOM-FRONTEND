@@ -57,7 +57,8 @@
             <td width=13%; >
                 <a   (click)="DeleteShop(i)"  class="pull-right"  data-toggle="tooltip" title="Supprimer"  style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 
-              <div *ngIf="LoggedIn=='true'">
+              <div *ngIf="LoggedIn=='true' && Sidus != product.idus ">
+
                 <a   (click)="AddShop(product.pricemin ,i,product.idpr, this['N' + i] )"   class="pull-right" data-toggle="tooltip" title="Valider cette offre" stysle="margin-right: 4%;"> <i class="fa fa-check-circle fa-2x" Style="color: #66c0b7;" aria-hidden="true"></i> </a>
               </div>
             </td>
@@ -102,7 +103,7 @@
           <h5 class="card-title"> Déjà un compte ?    </h5>
           <hr>
 
-          <form (submit)="loginUser($event)"   Style="text-align: center;">
+          <form (submit)="loginUser($event)"    Style="text-align: center;">
             <div class="form-group">
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mon e-mail ">
             </div>
@@ -116,7 +117,7 @@
 
 
 
-          <a routerLink="subscribe"  href="#" class="pull-left"  Style="margin-right: 1%;text-decoration: underline; font-size: 19px;" >  <small   class="form-text text-muted"> Pas de compte ? S'inscrire en 5 secondes...
+          <a routerLink="/subscribe"   class="pull-left"  Style="margin-right: 1%;text-decoration: underline; font-size: 19px;" >  <small   class="form-text text-muted"> Pas de compte ? S'inscrire en quelques secondes...
           </small> </a>
 
 

@@ -20,8 +20,6 @@
       <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu"  aria-labelledby="btnGroupDrop1" >
-      <a class="dropdown-item"   ><i class="fa fa-sort-asc" aria-hidden="true"></i></a>
-      <a class="dropdown-item" ><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
       <a class="dropdown-item" (click)="CPAMMIN=0; CPAMMAX=50; " >   Entre 0 et 50    </a>
       <a class="dropdown-item" (click)="CPAMMIN=50; CPAMMAX=200; " >   Entre 50 et 200  </a>
       <a class="dropdown-item" (click)="CPAMMIN=200; CPAMMAX=500; ">   Entre 200 et 500  </a>
@@ -58,11 +56,10 @@
 
 
 
-
 <div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-3 " >
 
-    <div   style="height: 510px; margin: 3%; background-color: #dddddd;  border-radius: 6px;">
+    <div   style="height: 550px; margin: 3%; background-color: #dddddd;  border-radius: 6px;">
       <br>
 
       <div class="info-tile tile-black" style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
@@ -161,9 +158,9 @@
   <ng-container *ngFor="let prod of Products  " >
     <ng-container *ngIf=" CPAMCATEG =='' ||  CPAMCATEG == prod.categ   "  >
     <ng-container *ngIf=" CPAMMIN <= prod.pricemin && CPAMMAX >= prod.pricemax && prod.zipcode==CPAMCP  "  >
-      <div *ngIf="(prod.title).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4">
+      <div *ngIf="(prod.title).toLowerCase().startsWith(CPAMSEARCH.toLowerCase())"   class="col-sm-4" Style="margin-top : 1.5%;">
 
-        <img  class="card-img-top" width="50" height="300" src="./assets/image/{{prod.linkpicture}}" alt="image">
+        <img  class="card-img-top" width="50" height="250" src="./assets/image/{{prod.linkpicture}}" alt="image">
         <div  class="card-body bg-light">
           <h4 class="card-title">{{ prod.title }}  </h4>
           <div class="card-text" Style="height: 100px;">
@@ -186,8 +183,8 @@
           <p class="card-text">  </p>
 
           <div class="row">
-            <div class="col-sm-10">   Compris entre <span class="badge badge-dark">  {{ prod.pricemin }} € </span> & <span class="badge badge-danger">{{ prod.pricemax }} €  </span>     </div>
-            <div class="col-sm-2" > <a (click)="addShop(prod.idpr)" data-toggle="modal" data-target="#Modal1"  class="pull-right btn btn-secondary" Style="color: white; margin-top: -8px;"   > Soumettre</a>  </div>
+            <div class="col-sm-8">   Compris entre <span class="badge badge-dark">  {{ prod.pricemin }} € </span> & <span class="badge badge-danger">{{ prod.pricemax }} €  </span>     </div>
+            <div class="col-sm-4" > <a (click)="addShop(prod.idpr)" data-toggle="modal" data-target="#Modal1"  class="pull-right btn btn-secondary" Style="color: white; margin-top: 0px;font-size: 70%; "   > Soumettre</a>  </div>
           </div>
 
         </div>

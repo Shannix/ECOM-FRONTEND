@@ -17,8 +17,11 @@ import 'rxjs/add/operator/catch';
   styleUrls: ['./new-ad.component.css']
 })
 export class NewAdComponent implements OnInit {
+public LoggedIn = this.localSt.retrieve('StateLoggedIn');
 
-  constructor( private localSt:LocalStorageService, private router:Router  , private http: HttpClient  ) {   }
+  constructor( private localSt:LocalStorageService, private router:Router  , private http: HttpClient  ) {
+
+     }
 
   ngOnInit() {  }
 
@@ -39,8 +42,7 @@ public Eshopping ;
 results: connect ;
 
 public UserName : string = this.localSt.retrieve('Username');
-public LoggedIn = this.localSt.retrieve('StateLoggedIn');
-
+ 
 
 getUserLoginCall(username,password){
 
@@ -55,7 +57,7 @@ getProductInsertCall(idus,inti,desc,categ,pricemin,pricemax,postale,date,link){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<error>('http://localhost:8080/JPAEJB/product?choice=0&idus='+idus+'&title='+inti+'&desc='+desc+'&categ='+categ+'&pricemin='+pricemin+'&pricemax='+pricemax+'&postale='+postale+'&date='+date+'&link='+link, { headers:header, responseType:'json' } ) ;
+    return this.http.get('http://localhost:8080/JPAEJB/product?choice=0&idus='+idus+'&title='+inti+'&desc='+desc+'&categ='+categ+'&pricemin='+pricemin+'&pricemax='+pricemax+'&postale='+postale+'&date='+date+'&link='+link, { headers:header, responseType:'json' } ) ;
 }
 
 
@@ -71,15 +73,24 @@ RegisterProduct(e){
     let pricemax = e.target.elements[4].value;
     let postale = e.target.elements[5].value;
     let date = e.target.elements[6].value;
-    let link = 'error.jpg'
+    let link = 'macbook.jpeg'
+
+
+
+if( inti=="" || desc==""  || categ=="" || pricemin=="" || pricemax=="" || postale=="" || date==""    ){
+alert ("Tous les champs sont obligatoires");
+}else{
 
   this.getProductInsertCall(this.localSt.retrieve('idus'),inti,desc,categ,pricemin,pricemax,postale,date,link).subscribe(data => {
 
     if( data['error'] == "false" ){
-     this.router.navigate(['newad']);
+   //  this.router.navigate(['newproduct']);
     }else{  alert( "Ajout impossible du produit." ) ; }
+          });
+ this.router.navigate(['newproduct']);
 
-       });
+}
+
 
   }
 
@@ -104,7 +115,7 @@ this.getUserLoginCall(username,password).subscribe(data => {
 
 
     if( this.results['Auth'] == "true" ){
-     this.router.navigate(['newad']);
+     this.router.navigate(['dashboard']);
     }else{  alert( ' Email ou Mot de passe érroné ' ) ; }
 
     });
@@ -126,10 +137,10 @@ export interface connect {
 
 
     subscribdate: string;
-   fname : string;
-	 phone : string;
+    fname : string;
+	  phone : string;
     Auth: string;
-  idus: string;
+    idus: string;
     name : string;
 
 

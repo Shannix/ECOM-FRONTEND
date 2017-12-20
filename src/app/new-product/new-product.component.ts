@@ -134,5 +134,6 @@ export interface produit {
     idpr : number;
     title : string;
     expiration_date: string;
+    NbOffres : number;
 
 }

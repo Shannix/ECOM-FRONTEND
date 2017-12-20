@@ -21,8 +21,7 @@ export class SubscribeComponent implements OnInit {
 
   constructor( private localSt:LocalStorageService , private router:Router, private http: HttpClient ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
 
 
@@ -47,8 +46,9 @@ header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
   	let phone = e.target.elements[3].value;
   	let password = e.target.elements[4].value;
 
-
-
+if( nom=="" || prenom==""  || email=="" || phone=="" || password=="" ){
+alert ("Tous les champs sont obligatoires");
+}else{
 this.postSuscribeUserCall(nom,prenom,email,password,phone).subscribe(data => {
 
     if( data['error'] == "false" ){
@@ -56,8 +56,11 @@ this.postSuscribeUserCall(nom,prenom,email,password,phone).subscribe(data => {
     }else{  alert( " L'utilisateur existe déja. " ) ; }
 
 
-
    });
+
+
+}
+
 
 
 

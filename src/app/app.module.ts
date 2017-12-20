@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SearchProductComponent } from './search-product/search-product.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { SimulateComponent } from './simulate/simulate.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
     ProfileComponent,
     SearchProductComponent,
     ShoppingComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    SimulateComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,11 @@ import { SubscribeComponent } from './subscribe/subscribe.component';
     HttpClientModule,
     Ng2Webstorage,
 RouterModule.forRoot([
-
+{
+path: 'simulate/:id',
+canActivate : [AuthguardGuard],
+component : SimulateComponent
+},
 {
 path: 'newproduct',
 canActivate : [AuthguardGuard],

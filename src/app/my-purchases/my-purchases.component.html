@@ -36,18 +36,17 @@
   <tr>
     <td  scope="row"> <span class="badge badge-dark">{{i+1}}</span></td>
 
-    <td> <a (click)="PickInfo(offer.idpr)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" >   <i class="fa fa-info-circle" aria-hidden="true"></i> Macbook pro {{ offer.idpr }}  </a></td>
+    <td> <a (click)="PickInfo(offer.idpr)"  data-toggle="modal" data-target="#Modal1" STYLE="text-decoration: underline; color: 	#005b96;" >   <i class="fa fa-info-circle" aria-hidden="true"></i> Produit {{ i+1 }}  </a></td>
 
     <td>
 
       <div class="col-lg-12 pull-left" >
         <div class="input-group" >
 
-          <span class="input-group-addon"> 5 </span>
-          <span class="input-group-addon">€</span>
+
 
           <input style="text-align: center;" readonly type="number" min="" value="{{ offer.price }}" class="form-control" aria-label="Text input with radio button">
-          <span class="input-group-addon">33</span>
+
           <span class="input-group-addon">€</span>
         </div>
       </div>
@@ -57,7 +56,7 @@
     </td>
     <td  scope="row"> {{ offer.data }}  </td>
     <td style="text-align: center;" > <span  class="badge badge-warning"  *ngIf="offer.state==0"  > En attente  </span>  <span  class="badge badge-success"  *ngIf="offer.state==1"  > Confirmé  </span> <span  class="badge badge-danger"  *ngIf="offer.state==2"  > Refusé </span>  </td>
-    <td style="text-align: center;" >   <span  class="badge badge-warning"  *ngIf="offer.state==0"  > Indisponible </span>  <span  class="badge badge-success"  *ngIf="offer.state==3"  > disponible </span>  <span  class="badge badge-warning"  *ngIf="offer.state==1"  > En Attente de validation </span>   <span  class="badge badge-danger"  *ngIf="offer.state==2"  > Indisponible </span>   </td>
+    <td style="text-align: center;" >   <span  class="badge badge-warning"  *ngIf="offer.state==0"  > Indisponible </span>  <a  (click)="ViewDetail(offer.price)" STYLE="text-decoration: underline; color: 	#005b96;" class="btn btn-link"  *ngIf="offer.state==3"  >   disponible </a>  <span  class="badge badge-warning"  *ngIf="offer.state==1"  > En Attente de validation </span>   <span  class="badge badge-danger"  *ngIf="offer.state==2"  > Indisponible </span>   </td>
     <td>
       <a   (click)="DeletePurchase(i,offer.idsc)" data-toggle="tooltip" title="Retirer mon offre"  class="pull-right" style=""> <i class="fa fa-window-close fa-2x" Style="color: #e34545;" aria-hidden="true"></i> </a>
 

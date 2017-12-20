@@ -23,7 +23,9 @@ import 'rxjs/add/operator/catch';
 export class ShoppingComponent implements OnInit {
 
 
-   constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
+   constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) {
+    this.Sidus = localSt.retrieve('idus');
+   }
 
 
 
@@ -45,10 +47,12 @@ public IdUser ;
 
 ngOnInit() { let tt  ;   }
 
-
+public Sidus : number=0;
 results: connect ;
 public UserName : string = this.localSt.retrieve('Username');
 public LoggedIn = this.localSt.retrieve('StateLoggedIn');
+
+
 
 
 
@@ -75,10 +79,10 @@ this.getUserLoginCall(username,password).subscribe(data => {
    this.localSt.store('StateLoggedIn', this.results['Auth'] );
    this.localSt.store('Username', this.results['fname'] );
    this.localSt.store('idus', this.results['idus'] );
-
+   this.Sidus = this.results['idus'];
 
     if( this.results['Auth'] == "true" ){
-     this.router.navigate(['shop']);
+   this.router.navigate(['dashboard']);
     }else{  alert( ' Email ou Mot de passe érroné ' ) ; }
 
     });
@@ -220,7 +224,7 @@ export interface connect {
    fname : string;
 	 phone : string;
     Auth: string;
-  idus: string;
+  idus: number;
     name : string;
 
 

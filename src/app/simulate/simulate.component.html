@@ -1,0 +1,106 @@
+
+<nav aria-label="breadcrumb" role="navigation" style="margin-top: 1%;" xmlns="http://www.w3.org/1999/html">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/" >Accueil</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a routerLink="/mypurchases"  >Mes achats</a></li>
+  </ol>
+</nav>
+
+<br>
+
+
+<div class="row">
+
+  <div class="col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"> Coordonnées bancaires </h4>
+<br>
+        <div class="form-group">
+          <div class="col">
+            <input type="number"  maxlength="16" class="form-control" placeholder="Numero carte">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <input type="text" maxlength="50" class="form-control" placeholder="Mois">
+          </div>
+          <div class="col-lg-3">
+            <input type="text" maxlength="50" class="form-control" placeholder="Année">
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <div class="col-lg-5">
+            <input type="number"  maxlength="3" class="form-control" placeholder="Cryptogramme">
+          </div>
+        </div>
+
+
+
+        <button (click)="affiche()"   type="button" class="btn btn-dark pull-right"> Valider </button>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-6">
+
+    <div class="card">
+      <div class="card-body">
+
+
+
+        <h6 class="card-title">Frais de service : <span  class="pull-right">  {{ selectedId*0.03 | number:'2.1-2' }} € </span> </h6>
+
+
+        <p> Les frais de services sont débités après que la transaction Vendeur-Acheteur soit totalement compléter.  </p>
+        <p> En cas de désistement ou problème avec le vendeur, nous ne tiendrons pas compte de cette transaction.  </p>
+      </div>
+    </div>
+
+    <br>
+
+
+    <div class="card">
+      <div class="card-body">
+
+        <h6 class="card-title">Coordonnées du vendeur   </h6>
+
+        <h6 class="card-title">Nom :  {{nom}} </h6>
+        <h6 class="card-title">Prénom : {{pre}}  </h6>
+        <h6 class="card-title">Telephone : {{ telephone }}  </h6>
+        <h6 class="card-title">Email : {{ email }}   </h6>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+
+<br>
+<button routerLink="/"  type="button" class="btn btn-light pull-center">Revenir en arriére</button>
+
+
+
+
+

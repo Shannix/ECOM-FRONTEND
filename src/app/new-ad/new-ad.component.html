@@ -107,7 +107,7 @@
         </div>
 
 
-        <button  type="submit" class="btn btn-primary pull-right"> Publier  </button>
+        <button *ngIf="LoggedIn=='true' "  type="submit" class="btn btn-primary pull-right"> Publier  </button>
         </form>
       </div>
     </div>
@@ -147,57 +147,9 @@
 
         </div>
       </div>
-      <h3 style="text-align: center;" >OÙ</h3>
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Pas de compte ? s'inscrire en 5 secondes... </h5>
-
-
-
-          <form (submit)="RegisterUser($event)"   Style="text-align: center;">
-            <div class="row">
-              <div class="col">
-                <input type="text" maxlength="50" class="form-control" placeholder="Nom">
-              </div>
-              <div class="col">
-                <input type="text" maxlength="50" class="form-control" placeholder="Prénom">
-              </div>
-            </div>
-            <br>
-
-
-            <div class="form-group">
-              <div class="col">
-                <input type="email" maxlength="50" class="form-control" placeholder="Mon e-mail">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col">
-                <input type="number"  maxlength="50" class="form-control" placeholder="Mon telephone">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col">
-                <input type="text"  maxlength="50" class="form-control" placeholder="Mot de passe">
-              </div>
-            </div>
-
-
-            <button  type="submit" class="btn btn-primary pull-right"> Enregistrer </button>
-          </form>
-
-
-
-        </div>
-
-      </div>
-
-
-
-
+      <a routerLink="/subscribe"   class="pull-left"  Style="margin-right: 1%;text-decoration: underline; font-size: 19px;" >  <small   class="form-text text-muted"> Pas de compte ? S'inscrire en quelques secondes...
+      </small> </a>
 
     </div>
 

@@ -50,7 +50,8 @@
 
 
     <div *ngIf="LoggedIn=='true'">
-      <a (click)="Logout()" href="#" class="pull-right" style="color:white;" >  Bonjour {{  UserName }}, Se deconnecter  <i class="fa fa-sign-out " Style="color : 	#a48c60;" aria-hidden="true"></i>  </a>
+
+      <a (click)="Logout()" ONCLICK="history.go(0);" href="#" class="pull-right" style="color:white;" >  Bonjour {{  UserName }}, Se deconnecter  <i class="fa fa-sign-out " Style="color : 	#a48c60;" aria-hidden="true"></i>  </a>
     </div>
 
 
