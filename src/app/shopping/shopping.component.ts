@@ -22,6 +22,8 @@ import 'rxjs/add/operator/catch';
 
 export class ShoppingComponent implements OnInit {
 
+public ipad = "http://152.77.78.15:8080";
+
 
    constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) {
     this.Sidus = localSt.retrieve('idus');
@@ -60,7 +62,7 @@ getUserLoginCall(username,password){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<connect>('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
+    return this.http.get<connect>(this.ipad+'/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
 
 }
 
@@ -112,7 +114,7 @@ getProductInfoCall(id){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit>(this.ipad+'/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
 }
 
 
@@ -152,7 +154,7 @@ postProductPurchaseCall(idus,idpr,price){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=0&idus='+idus+'&idpr='+idpr+'&price='+price, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/myoffers?choice=0&idus='+idus+'&idpr='+idpr+'&price='+price, { headers:header, responseType:'json' } ) ;
 
 }
 

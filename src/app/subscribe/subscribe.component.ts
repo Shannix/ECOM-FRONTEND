@@ -18,7 +18,7 @@ import 'rxjs/add/operator/catch';
 })
 export class SubscribeComponent implements OnInit {
 
-
+public ipad = "http://152.77.78.15:8080";
   constructor( private localSt:LocalStorageService , private router:Router, private http: HttpClient ) { }
 
   ngOnInit() {  }
@@ -29,7 +29,7 @@ postSuscribeUserCall(nom,prenom,email,password,phone){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<state>('http://localhost:8080/JPAEJB/users?choice=1&nom='+nom+'&prenom='+prenom+'&email='+email+'&phone='+phone+'&mdp='+password, { headers:header, responseType:'json' } ) ;
+    return this.http.get<state>(this.ipad+'/JPAEJB/users?choice=1&nom='+nom+'&prenom='+prenom+'&email='+email+'&phone='+phone+'&mdp='+password, { headers:header, responseType:'json' } ) ;
 
 }
 

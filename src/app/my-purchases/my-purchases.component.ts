@@ -19,6 +19,7 @@ import 'rxjs/add/operator/catch';
 })
 export class MyPurchasesComponent implements OnInit {
 
+public ipad = "http://152.77.78.15:8080";
  getproduit: produit ;
  getoffers: offer[] ;
 
@@ -37,13 +38,13 @@ public PrPrixmax : number = 0;
   getProductInfoCall(id){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit>(this.ipad+'/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
   }
 
   getOffersCall(idus){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<offer[]>('http://localhost:8080/JPAEJB/myoffers?choice=5&ID='+idus, { headers:header, responseType:'json' } ) ;
+    return this.http.get<offer[]>(this.ipad+'/JPAEJB/myoffers?choice=5&ID='+idus, { headers:header, responseType:'json' } ) ;
   }
 
 
@@ -77,7 +78,7 @@ this.getProductInfoCall(idpr).subscribe(data => { this.getproduit = data;
 postDeletePurchaseCall(id){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=3&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/myoffers?choice=3&ID='+id, { headers:header, responseType:'json' } ) ;
   }
 
 
@@ -92,7 +93,7 @@ this.postDeletePurchaseCall(id).subscribe(data => { }); }
 postRefuseOfferCall(id,st){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=2&ID='+id+'&ST='+st, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/myoffers?choice=2&ID='+id+'&ST='+st, { headers:header, responseType:'json' } ) ;
   }
 
 checkoffer = function(id){ this.postRefuseOfferCall(id,3).subscribe(data => { }); }

@@ -22,14 +22,14 @@ export class ProfileComponent implements OnInit {
 
  constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient   ) { }
 
-
+public ipad = "http://152.77.78.15:8080";
 public User : user;
 
   getUserInfoCall(id){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<user>('http://localhost:8080/JPAEJB/users?choice=2&idus='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<user>(this.ipad+'/JPAEJB/users?choice=2&idus='+id, { headers:header, responseType:'json' } ) ;
 
   }
 

@@ -20,6 +20,7 @@ import 'rxjs/add/operator/catch';
 export class OffersComponent implements OnInit {
 
 
+public ipad = "http://152.77.78.15:8080";
  public selectedId;
  getproduit: produit ;
  getoffers: offer[] ;
@@ -38,13 +39,13 @@ constructor(private router:Router , private route: ActivatedRoute,   private loc
 getProductInfoCall(id){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit>(this.ipad+'/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
 }
 
   getOffersCall(idpr){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<offer[]>('http://localhost:8080/JPAEJB/myoffers?choice=4&ID='+idpr, { headers:header, responseType:'json' } ) ;
+    return this.http.get<offer[]>(this.ipad+'/JPAEJB/myoffers?choice=4&ID='+idpr, { headers:header, responseType:'json' } ) ;
   }
 
 
@@ -53,7 +54,7 @@ getProductInfoCall(id){
 postRefuseOfferCall(id,st){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/myoffers?choice=2&ID='+id+'&ST='+st, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/myoffers?choice=2&ID='+id+'&ST='+st, { headers:header, responseType:'json' } ) ;
   }
 
 checkoffer = function(id){ this.postRefuseOfferCall(id,1).subscribe(data => { }); }

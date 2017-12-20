@@ -18,7 +18,7 @@ import 'rxjs/add/operator/catch';
 })
 export class NewAdComponent implements OnInit {
 public LoggedIn = this.localSt.retrieve('StateLoggedIn');
-
+public ipad = "http://152.77.78.15:8080";
   constructor( private localSt:LocalStorageService, private router:Router  , private http: HttpClient  ) {
 
      }
@@ -42,13 +42,13 @@ public Eshopping ;
 results: connect ;
 
 public UserName : string = this.localSt.retrieve('Username');
- 
+
 
 getUserLoginCall(username,password){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<connect>('http://localhost:8080/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
+    return this.http.get<connect>(this.ipad+'/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
 
 }
 
@@ -57,7 +57,7 @@ getProductInsertCall(idus,inti,desc,categ,pricemin,pricemax,postale,date,link){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/product?choice=0&idus='+idus+'&title='+inti+'&desc='+desc+'&categ='+categ+'&pricemin='+pricemin+'&pricemax='+pricemax+'&postale='+postale+'&date='+date+'&link='+link, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/product?choice=0&idus='+idus+'&title='+inti+'&desc='+desc+'&categ='+categ+'&pricemin='+pricemin+'&pricemax='+pricemax+'&postale='+postale+'&date='+date+'&link='+link, { headers:header, responseType:'json' } ) ;
 }
 
 

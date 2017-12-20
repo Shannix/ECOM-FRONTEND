@@ -28,8 +28,8 @@ public PanierV3;
 
    }
 
-
 public ipad = "http://152.77.78.15:8080";
+public ipad2 = "http://localhost:8080";
 
 public ProductCheck : produit;
 Products :produit[];
@@ -39,14 +39,14 @@ public idus : number = this.localSt.retrieve('idus');
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit>(this.ipad+'/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
 
   }
 
       getProductsCall(){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit[]>('http://152.77.78.15:8080/JPAEJB/product?choice=5', { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit[]>(this.ipad+'/JPAEJB/product?choice=5', { headers:header, responseType:'json' } ) ;
   }
 
 
