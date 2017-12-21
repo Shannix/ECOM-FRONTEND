@@ -19,7 +19,7 @@ export class NewProductComponent implements OnInit {
 
     constructor(private router:Router ,  private localSt:LocalStorageService , private http: HttpClient  ) { }
 
-
+public ipad = "http://152.77.78.15:8080";
 getproduit: produit ;
 Products: produit[] ;
 
@@ -27,7 +27,7 @@ getProductInfoCall(id){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit>('http://localhost:8080/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit>(this.ipad+'/JPAEJB/product?choice=4&ID='+id, { headers:header, responseType:'json' } ) ;
 }
 
 
@@ -36,7 +36,7 @@ getProductsCall(id){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<produit[]>('http://localhost:8080/JPAEJB/product?choice=6&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get<produit[]>(this.ipad+'/JPAEJB/product?choice=6&ID='+id, { headers:header, responseType:'json' } ) ;
 
 }
 
@@ -79,7 +79,7 @@ this.getProductInfoCall(idpr).subscribe(data => { this.getproduit = data;
 postDeleteProductCall(id){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/product?choice=3&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/product?choice=3&ID='+id, { headers:header, responseType:'json' } ) ;
   }
 
 
@@ -90,7 +90,7 @@ this.postDeleteProductCall(id).subscribe(data => { }); }
 postDonProductCall(id){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/product?choice=1&ID='+id, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/product?choice=1&ID='+id, { headers:header, responseType:'json' } ) ;
   }
 
 GoDons = function(id){  this.postDonProductCall(id).subscribe(data => { }); }
@@ -100,7 +100,7 @@ GoDons = function(id){  this.postDonProductCall(id).subscribe(data => { }); }
 postUpdateProductCall(id,title,desc,date){
   let header = new HttpHeaders();
   header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get('http://localhost:8080/JPAEJB/product?choice=2&ID='+id+'&title='+title+'&desc='+desc+'&date='+date, { headers:header, responseType:'json' } ) ;
+    return this.http.get(this.ipad+'/JPAEJB/product?choice=2&ID='+id+'&title='+title+'&desc='+desc+'&date='+date, { headers:header, responseType:'json' } ) ;
   }
 
 
