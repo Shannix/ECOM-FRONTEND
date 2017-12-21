@@ -29,7 +29,7 @@ public PanierV3;
    }
 
 public ipad = "http://152.77.78.15:8080";
-public ipad2 = "http://localhost:8080";
+
 
 public ProductCheck : produit;
 Products :produit[];

@@ -20,9 +20,6 @@ import 'rxjs/add/operator/catch';
 
 
 
-
-
-
 export class LoginFormComponent implements OnInit {
 
 
@@ -30,8 +27,6 @@ export class LoginFormComponent implements OnInit {
   constructor( private localSt:LocalStorageService , private router:Router, private http: HttpClient ) { }
 
 public ipad = "http://152.77.78.15:8080";
-
-
 results: connect ;
 
 
@@ -40,7 +35,7 @@ getUserLoginCall(username,password){
 
 let header = new HttpHeaders();
 header.append('x-api-key','L1jyBhWpjl114hlrBTvFV8EAoy4zSnWZ8X8BZpYB');
-    return this.http.get<connect>('this.ipad+/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
+    return this.http.get<connect>(this.ipad+'/JPAEJB/connect?username='+username+'&password='+password, { headers:header, responseType:'json' } ) ;
 
 }
 
